@@ -10,6 +10,10 @@ models/*
 # Except README.md
 !models/README.md
 
+# documents
+documents/*
+!documents/README.md
+
 # Python cache
 __pycache__/
 *.pyc
