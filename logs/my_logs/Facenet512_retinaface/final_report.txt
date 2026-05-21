@@ -1,13 +1,13 @@
 --- BAO CAO KET QUA NHAN DIEN ---
 Model: Facenet512 | Detector: retinaface
-EER dat duoc: 0.0633 tai Threshold: 0.3948
-Train Accuracy: 0.9810
-Test Accuracy:  0.9400
-Train Loss: 0.0631
-Test Loss:  0.1987
-Precision: 0.9459
-Recall: 0.9333
-F1-Score: 0.9396
-FAR tai EER: 0.0633
+EER dat duoc: 0.0642 tai Threshold: 0.3146
+Train Accuracy: 0.9844
+Test Accuracy:  0.9417
+Train Loss: 0.0596
+Test Loss:  0.1961
+Precision: 0.9522
+Recall: 0.9300
+F1-Score: 0.9410
+FAR tai EER: 0.0650
 FRR tai EER: 0.0633
-TB predict/anh: 0.0005s
+TB predict/anh: 0.0002s

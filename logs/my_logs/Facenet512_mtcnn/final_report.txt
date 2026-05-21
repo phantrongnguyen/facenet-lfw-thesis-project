@@ -1,13 +1,13 @@
 --- BAO CAO KET QUA NHAN DIEN ---
 Model: Facenet512 | Detector: mtcnn
-EER dat duoc: 0.0667 tai Threshold: 0.2445
-Train Accuracy: 0.9543
-Test Accuracy:  0.9342
-Train Loss: 0.1164
-Test Loss:  0.1865
-Precision: 0.9780
-Recall: 0.8883
-F1-Score: 0.9310
-FAR tai EER: 0.0667
-FRR tai EER: 0.0667
-TB predict/anh: 0.0005s
+EER dat duoc: 0.0617 tai Threshold: 0.4329
+Train Accuracy: 0.9702
+Test Accuracy:  0.9408
+Train Loss: 0.0935
+Test Loss:  0.1920
+Precision: 0.9521
+Recall: 0.9283
+F1-Score: 0.9401
+FAR tai EER: 0.0617
+FRR tai EER: 0.0617
+TB predict/anh: 0.0002s
