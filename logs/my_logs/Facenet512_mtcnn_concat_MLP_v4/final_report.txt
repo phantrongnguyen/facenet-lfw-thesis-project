@@ -1,0 +1,11 @@
+--- BAO CAO KET QUA NHAN DIEN (IMPROVED) ---
+Model: Facenet512_mtcnn_concat_MLP_v4 | Detector: mtcnn
+EER: 0.0617 @ Threshold: 0.0942
+Train Acc: 0.9704
+Test Acc: 0.9458
+Train Loss: 0.1978
+Test Loss: 0.3256
+Precision: 0.9855
+Recall: 0.9050
+F1: 0.9435
+TB predict/anh: 0.0003s

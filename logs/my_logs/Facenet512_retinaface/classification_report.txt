@@ -1,7 +1,7 @@
               precision    recall  f1-score   support
 
-   different       0.93      0.95      0.94       600
-        same       0.95      0.93      0.94       600
+   different       0.91      0.98      0.94       600
+        same       0.97      0.90      0.94       600
 
     accuracy                           0.94      1200
    macro avg       0.94      0.94      0.94      1200

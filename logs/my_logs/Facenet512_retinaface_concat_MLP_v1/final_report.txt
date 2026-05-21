@@ -1,0 +1,11 @@
+--- BAO CAO KET QUA NHAN DIEN (IMPROVED) ---
+Model: Facenet512_retinaface_concat_MLP_v1 | Detector: retinaface
+EER: 0.0508 @ Threshold: 0.0401
+Train Acc: 0.9915
+Test Acc: 0.9592
+Train Loss: 0.3799
+Test Loss: 0.6117
+Precision: 0.9825
+Recall: 0.9350
+F1: 0.9582
+TB predict/anh: 0.0004s
