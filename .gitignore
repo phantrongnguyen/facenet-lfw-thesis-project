@@ -1,20 +1,44 @@
-
+# Dataset - do not commit raw/private datasets
 data/*
 !data/README.md
-!data/.gitkeep 
+!data/.gitkeep
 
-
-# Ignore all files in models
-models/*
-
-# Except README.md
-!models/README.md
-
-# documents
+# Documents - keep only documentation placeholders
 documents/*
 !documents/README.md
+!documents/.gitkeep
 
-# Python cache
+# Ignore model folders by default
+models/*
+!models/README.md
+!models/.gitkeep
+!models/precomputed/
+models/precomputed/*
+!models/precomputed/.gitkeep
+!models/precomputed/Facenet_mtcnn_embeddings.pkl
+!models/precomputed/Facenet_retinaface_embeddings.pkl
+!models/precomputed/Facenet512_mtcnn_embeddings.pkl
+!models/precomputed/Facenet512_retinaface_embeddings.pkl
+
+# Do not commit generated Python files
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+
+# Do not commit local virtual environments or secrets
+.venv/
+venv/
+env/
+.env
+
+# Do not commit frontend dependency/build output
+node_modules/
+dist/
+.vite/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
