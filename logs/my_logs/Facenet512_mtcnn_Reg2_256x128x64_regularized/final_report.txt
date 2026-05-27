@@ -1,0 +1,29 @@
+--- BAO CAO KET QUA NHAN DIEN (REGULARIZED) ---
+Model: Facenet512_mtcnn_Reg2_256x128x64_regularized | Detector: mtcnn
+
+[Prediction Performance]
+Train Acc: 0.9883
+Test Acc: 0.9442
+Balanced Acc: 0.9442
+Train Loss: 0.4697
+Test Loss: 0.6290
+Overfit Gap: 0.0442
+Precision: 0.9619
+Recall: 0.9250
+Specificity: 0.9633
+F1: 0.9431
+ROC-AUC: 0.9789
+FAR: 0.0367
+FRR: 0.0750
+EER: 0.0583 @ Threshold: 0.2563
+Confusion Matrix Counts: TP=555, TN=578, FP=22, FN=45
+
+[Computational Performance]
+Latency: 0.1508 ms/sample
+Throughput/FPS: 6629.20 samples/sec
+Total Predict Time: 0.1810 s for 1200 samples
+CPU Usage Total: 7.01%
+CPU Single-Core Equivalent: 112.21%
+RAM Before/After/Delta: 1487.70 / 1487.75 / 0.05 MB
+Parameters: 305,153
+Model Size: 3.53 MB

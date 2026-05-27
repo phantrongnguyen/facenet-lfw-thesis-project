@@ -1,12 +1,29 @@
 --- BAO CAO KET QUA NHAN DIEN (REGULARIZED) ---
 Model: Facenet512_retinaface_Reg1_512x256x128_regularized | Detector: retinaface
-EER: 0.0533 @ Threshold: 0.1804
-Train Acc: 0.9929
-Test Acc: 0.9533
-Train Loss: 0.4831
-Test Loss: 0.6365
-Precision: 0.9706
-Recall: 0.9350
-F1: 0.9525
-Overfit gap: 0.0396
-TB predict/anh: 0.000240s
+
+[Prediction Performance]
+Train Acc: 0.9925
+Test Acc: 0.9542
+Balanced Acc: 0.9542
+Train Loss: 0.4496
+Test Loss: 0.6446
+Overfit Gap: 0.0383
+Precision: 0.9756
+Recall: 0.9317
+Specificity: 0.9767
+F1: 0.9531
+ROC-AUC: 0.9847
+FAR: 0.0233
+FRR: 0.0683
+EER: 0.0533 @ Threshold: 0.0841
+Confusion Matrix Counts: TP=559, TN=586, FP=14, FN=41
+
+[Computational Performance]
+Latency: 0.1857 ms/sample
+Throughput/FPS: 5385.63 samples/sec
+Total Predict Time: 0.2228 s for 1200 samples
+CPU Usage Total: 9.20%
+CPU Single-Core Equivalent: 147.26%
+RAM Before/After/Delta: 1523.49 / 1523.55 / 0.06 MB
+Parameters: 692,225
+Model Size: 7.96 MB

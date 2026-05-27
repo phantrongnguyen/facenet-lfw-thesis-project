@@ -1,0 +1,26 @@
+--- BAO CAO KET QUA NHAN DIEN ---
+Model: facenet_retinaface | Detector: retinaface
+
+[Prediction Performance]
+train_acc: 0.9762
+test_acc: 0.95
+balanced_accuracy: 0.95
+precision: 0.947
+recall: 0.9533
+specificity: 0.9467
+f1: 0.9502
+auc: 0.9868
+far: 0.0533
+frr: 0.0467
+eer: 0.05
+overfit_gap: 0.0262
+EER Threshold: 0.5475
+Confusion Matrix: TP=572, TN=568, FP=32, FN=28
+
+[Computational Performance]
+Latency: 0.1734 ms/sample
+FPS: 5765.62
+CPU Total: 11.73%
+RAM Delta: 0.1 MB
+Parameters: 108,545
+Model Size: 0.41 MB

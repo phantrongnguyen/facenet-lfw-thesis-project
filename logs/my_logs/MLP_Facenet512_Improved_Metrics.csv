@@ -1,3 +1,0 @@
-model,train_acc,test_acc,precision,recall,f1,eer,threshold,train_loss,test_loss,infer_avg_s
-Facenet512_mtcnn_concat_MLP_v4,0.9704,0.9458,0.9855,0.905,0.9435,0.0617,0.0942,0.1978,0.3256,0.000341
-Facenet512_retinaface_concat_MLP_v1,0.9915,0.9592,0.9825,0.935,0.9582,0.0508,0.0401,0.3799,0.6117,0.00044

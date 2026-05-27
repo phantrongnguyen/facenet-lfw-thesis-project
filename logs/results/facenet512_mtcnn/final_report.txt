@@ -1,0 +1,26 @@
+--- BAO CAO KET QUA NHAN DIEN ---
+Model: facenet512_mtcnn | Detector: mtcnn
+
+[Prediction Performance]
+train_acc: 0.9904
+test_acc: 0.9408
+balanced_accuracy: 0.9408
+precision: 0.9301
+recall: 0.9533
+specificity: 0.9283
+f1: 0.9416
+auc: 0.9835
+far: 0.0717
+frr: 0.0467
+eer: 0.0533
+overfit_gap: 0.0496
+EER Threshold: 0.6306
+Confusion Matrix: TP=572, TN=557, FP=43, FN=28
+
+[Computational Performance]
+Latency: 0.1943 ms/sample
+FPS: 5148.0
+CPU Total: 6.7%
+RAM Delta: 0.08 MB
+Parameters: 305,153
+Model Size: 1.16 MB
