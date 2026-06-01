@@ -34,27 +34,28 @@ logs/
 
 | Model | Detector | Test Acc | Precision | Recall | F1 | EER | FAR | FRR | AUC | Params | Size |
 |-------|----------|:--------:|:---------:|:------:|:--:|:---:|:---:|:---:|:---:|:------:|:----:|
-| FaceNet128 | MTCNN | 93.42% | 92.78% | 94.17% | 93.47% | 6.67% | 7.33% | 5.83% | 0.9820 | 108.5K | 0.41 MB |
-| FaceNet128 | RetinaFace | 95.00% | 94.85% | 95.17% | 95.01% | 4.83% | 5.17% | 4.83% | 0.9869 | 108.5K | 0.41 MB |
-| FaceNet512 | MTCNN | 95.42% | 96.58% | 94.17% | 95.36% | 5.17% | 3.33% | 5.83% | 0.9824 | 305K | 1.16 MB |
-| FaceNet512 | RetinaFace | 95.67% | 96.60% | 94.67% | 95.62% | 4.50% | 3.33% | 5.33% | 0.9852 | 305K | 1.16 MB |
+| FaceNet128 | MTCNN | 93.50% | 92.65% | 94.50% | 93.56% | 6.50% | 7.50% | 5.50% | 0.9828 | 108.5K | 0.41 MB |
+| FaceNet128 | RetinaFace | 95.00% | 94.70% | 95.33% | 95.02% | 5.00% | 5.33% | 4.67% | 0.9868 | 108.5K | 0.41 MB |
+| FaceNet512 | MTCNN | 94.08% | 93.01% | 95.33% | 94.16% | 5.33% | 7.17% | 4.67% | 0.9835 | 305K | 1.16 MB |
+| FaceNet512 | RetinaFace | 95.17% | 96.89% | 93.33% | 95.08% | 5.00% | 3.00% | 6.67% | 0.9859 | 305K | 1.16 MB |
 
 ### Độ đo phần cứng baseline
 
 | Model | CPU Time (s) | CPU Total % | CPU Single-core % | RAM Before (MB) | RAM After (MB) | RAM Delta (MB) |
 |-------|:-----------:|:-----------:|:-----------------:|:---------------:|:--------------:|:--------------:|
-| FaceNet128 + MTCNN | 0.3594 | 7.32% | 117.13 | 509.93 | 510.04 | **0.11** |
-| FaceNet128 + RetinaFace | 0.4375 | 6.94% | 111.07 | 551.31 | 551.40 | 0.09 |
-| FaceNet512 + MTCNN | 0.3906 | **6.60%** | 105.66 | 684.06 | 684.12 | 0.07 |
-| FaceNet512 + RetinaFace | 0.4062 | 6.88% | 110.08 | 706.75 | 706.82 | **0.06** |
+| FaceNet128 + MTCNN | 0.2812 | 6.75% | 108.03 | 511.62 | 511.75 | 0.13 |
+| FaceNet128 + RetinaFace | 0.3906 | **11.73%** | **187.68** | 550.00 | 550.11 | 0.10 |
+| FaceNet512 + MTCNN | **0.2500** | **6.70%** | 107.25 | 680.50 | 680.58 | **0.08** |
+| FaceNet512 + RetinaFace | 0.3438 | 7.46% | 119.44 | 708.39 | 708.46 | **0.07** |
 
-> **Nhận xét CPU:** Cả 4 model đều rất nhẹ về CPU (< 7.5%, RAM delta < 0.12 MB). FaceNet512 + RetinaFace có RAM delta thấp nhất (0.06 MB). FaceNet128 + MTCNN tiêu tốn CPU nhiều nhất (7.32%) nhưng RAM delta cao nhất (0.11 MB). CPU single-core tương đương ~110% — tận dụng tốt đa luồng.
+> **Nhận xét CPU:** Cả 4 model đều nhẹ về CPU (6.7–11.73%, RAM delta < 0.13 MB). FaceNet128 + RetinaFace có CPU Total cao nhất (11.73%) và CPU Single-core cao nhất (187.68) — do pipeline RetinaFace phức tạp. FaceNet512 + MTCNN nhẹ nhất (CPU 6.7%, RAM delta 0.08 MB). FaceNet512 + RetinaFace cân bằng tốt (7.46% CPU, 0.07 MB RAM delta). CPU single-core tương đương 107–188% — tận dụng đa luồng.
 
 ### Nhận xét baseline
 
-- **FaceNet512 outperform FaceNet128** trên cùng detector: +1.7% avg test acc, +1.1% F1
-- **RetinaFace outperform MTCNN** trên cùng backbone: EER giảm 1.5-2%
-- **Best baseline**: FaceNet512 + RetinaFace (95.67% test acc, 4.50% EER)
+- **FaceNet512 outperform FaceNet128 trên RetinaFace**: +0.17% test acc, +0.06% F1, EER ngang bằng (5.00%)
+- **FaceNet128 outperform FaceNet512 trên MTCNN**: 93.50% vs 94.08% — FaceNet512 chỉ nhỉnh hơn +0.58%
+- **RetinaFace outperform MTCNN** trên cùng backbone: trung bình +1.5% test acc, EER giảm 1-2%
+- **Best baseline**: FaceNet512 + RetinaFace (95.17% test acc, 96.89% precision, 5.00% EER)
 - **Model size**: FaceNet128 MLP chỉ 0.41 MB, FaceNet512 MLP 1.16 MB → rất nhẹ
 
 ![Comparison 4 Models](results/comparison_4models.png) | ![ROC Curve](results/ROC_Curve_All_Models.png) | ![Radar Chart](results/radar_chart_4models.png)
@@ -127,19 +128,19 @@ Tối ưu kiến trúc MLP cho FaceNet512 với 3 cấu hình × 2 detectors, đ
 | Metric | 🥈 FaceNet128 + RetinaFace | 🥇 FaceNet512 + RetinaFace + Reg1 | Chênh lệch |
 |--------|:--------------------------:|:---------------------------------:|:----------:|
 | **Test Accuracy** | 95.00% | **96.41%** | **+1.41%** 🟢 |
-| **Precision** | 94.85% | **97.21%** | **+2.36%** 🟢 |
-| **Recall** | 95.17% | **95.60%** | **+0.43%** 🟢 |
-| **F1-Score** | 95.01% | **96.39%** | **+1.38%** 🟢 |
-| **AUC** | 0.9869 | **0.9899** | **+0.003** 🟢 |
-| **EER** | 4.83% | **3.90%** | **-19.3%** 🟢 |
-| **FAR** | 5.17% | **2.77%** | **-46.4%** 🟢 |
-| **FRR** | 4.83% | **4.40%** | **-8.9%** 🟢 |
-| **Latency** | 0.328ms | **0.193ms** | **-41.2%** 🟢 |
-| **FPS** | 3046 | **5223** | **+71.5%** 🟢 |
-| **CPU Total %** | **6.94%** | 8.82% | **+27.1%** 🔴 |
-| **CPU Single-core %** | **111.07** | 220.50 | **+98.5%** 🔴 |
-| **RAM After (MB)** | **551.40** | 1093.73 | **+98.3%** 🔴 |
-| **RAM Delta (MB)** | 0.09 | **0.06** | **-33.3%** 🟢 |
+| **Precision** | 94.70% | **97.21%** | **+2.51%** 🟢 |
+| **Recall** | 95.33% | **95.60%** | **+0.27%** 🟢 |
+| **F1-Score** | 95.02% | **96.39%** | **+1.37%** 🟢 |
+| **AUC** | 0.9868 | **0.9899** | **+0.0031** 🟢 |
+| **EER** | 5.00% | **3.90%** | **-22.0%** 🟢 |
+| **FAR** | 5.33% | **2.77%** | **-48.0%** 🟢 |
+| **FRR** | 4.67% | **4.40%** | **-5.8%** 🟢 |
+| **Latency** | **0.173ms** | 0.193ms | **+11.5%** 🔴 |
+| **FPS** | **5766** | 5223 | **-9.4%** 🔴 |
+| **CPU Total %** | 11.73% | **8.82%** | **-24.8%** 🟢 |
+| **CPU Single-core %** | 187.68 | 220.50 | **+17.5%** 🔴 |
+| **RAM After (MB)** | **550.11** | 1093.73 | **+98.8%** 🔴 |
+| **RAM Delta (MB)** | 0.10 | **0.06** | **-40.0%** 🟢 |
 | **Parameters** | **108.5K** | 692K | **+6.4×** 🔴 |
 | **Model Size** | **0.41 MB** | 2.64 MB | **+6.4×** 🔴 |
 
@@ -184,20 +185,21 @@ Reg3 (768→384→128) quá rộng → dư thừa tham số, không cải thiệ
 
 | Model | CPU Total % | CPU Single-core % | RAM After (MB) | RAM Delta (MB) |
 |-------|:----------:|:-----------------:|:--------------:|:--------------:|
-| FaceNet128 + MTCNN (baseline) | 7.32% | 117.13 | 510.04 | 0.11 |
-| FaceNet128 + RetinaFace (baseline) | 6.94% | 111.07 | 551.40 | 0.09 |
-| FaceNet512 + MTCNN (baseline) | 6.60% | 105.66 | 684.12 | 0.07 |
-| FaceNet512 + RetinaFace (baseline) | 6.88% | 110.08 | 706.82 | 0.06 |
-| **FaceNet512 + RetinaFace + Reg1 (CV)** | **8.82%** | **220.50** | **1093.73** | — |
+| FaceNet128 + MTCNN (baseline) | 6.75% | 108.03 | 511.75 | 0.13 |
+| FaceNet128 + RetinaFace (baseline) | **11.73%** | **187.68** | 550.11 | 0.10 |
+| FaceNet512 + MTCNN (baseline) | 6.70% | 107.25 | 680.58 | 0.08 |
+| FaceNet512 + RetinaFace (baseline) | 7.46% | 119.44 | 708.46 | 0.07 |
+| **FaceNet512 + RetinaFace + Reg1 (CV)** | 8.82% | 220.50 | 1093.73 | — |
 | FaceNet512 + RetinaFace + Reg2 (CV) | 6.57% | 137.33 | 1186.22 | — |
 | FaceNet512 + MTCNN + Reg1 (CV) | 6.34% | 101.38 | 702.25 | — |
 
 > **Nhận xét:**
-> - **Baseline models** rất nhẹ: CPU 6.6–7.3%, RAM delta < 0.12 MB. FaceNet512 không tăng đáng kể CPU so với FaceNet128.
-> - **FaceNet512 + RetinaFace + Reg1 (CV)** tiêu tốn CPU nhiều nhất (8.82%, single-core ~220) do MLP 3 lớp 512→256→128. Tuy nhiên, đây là mức rất thấp — hoàn toàn có thể chạy real-time trên CPU.
-> - **RAM After** tăng theo model complexity: 510 MB (FaceNet128) → 1093 MB (FaceNet512+Reg1). Mức này vẫn phù hợp cho hầu hết thiết bị (kể cả Raspberry Pi 4 có 4-8GB RAM).
-> - **RAM Delta** hầu như không đáng kể (0.06–0.11 MB) — models không rò rỉ bộ nhớ.
-> - **Kết luận phần cứng:** FaceNet512 + RetinaFace + Reg1 dù có CPU cao nhất (8.82%) nhưng vẫn rất nhẹ, không gây áp lực lên hệ thống hoặc quá nhiệt. Phù hợp cho triển khai real-time trên CPU.
+> - **FaceNet128 + RetinaFace (baseline)** có CPU Total cao nhất (11.73%) và CPU Single-core cao nhất (187.68) — pipeline RetinaFace phức tạp hơn MTCNN, đặc biệt trên embedding 128 chiều.
+> - **FaceNet512 + RetinaFace + Reg1 (CV)** có CPU 8.82% — thấp hơn baseline FaceNet128+RetinaFace (11.73%). Lý do: MLP Reg1 tối ưu hơn, giảm số lần forward.
+> - **FaceNet512 + MTCNN** nhẹ nhất (6.7%, 0.08 MB RAM delta) — phù hợp thiết bị cấu hình thấp.
+> - **RAM After** tăng theo model complexity: 511 MB (FaceNet128) → 1093 MB (FaceNet512+Reg1). Mức này vẫn phù hợp cho hầu hết thiết bị (kể cả Raspberry Pi 4 có 4-8GB RAM).
+> - **RAM Delta** hầu như không đáng kể (0.07–0.13 MB) — models không rò rỉ bộ nhớ.
+> - **Kết luận phần cứng:** FaceNet512 + RetinaFace + Reg1 có CPU 8.82% — thấp hơn cả baseline FaceNet128+RetinaFace (11.73%). Rất nhẹ, không gây áp lực lên hệ thống, phù hợp real-time trên CPU.
 
 ### 4.6. Đánh đổi (Trade-offs)
 
@@ -218,9 +220,9 @@ Reg3 (768→384→128) quá rộng → dư thừa tham số, không cải thiệ
 | 🥇 | **FaceNet512 + RetinaFace + Reg1** | **96.41%** | **96.39%** | **3.90%** | **0.19ms** | **9.7/10** |
 | 🥈 | FaceNet512 + RetinaFace + Reg3 | 96.26% | 96.23% | 4.04% | 0.22ms | 9.3/10 |
 | 🥉 | FaceNet512 + RetinaFace + Reg2 | 96.01% | 95.98% | 4.07% | 0.23ms | 9.0/10 |
-| 4 | FaceNet128 + RetinaFace (baseline) | 95.00% | 95.01% | 4.83% | 0.33ms | 8.0/10 |
+| 4 | FaceNet128 + RetinaFace (baseline) | 95.00% | 95.02% | 5.00% | 0.17ms | 8.0/10 |
 
-> **Kết luận cuối cùng:** FaceNet512 + RetinaFace + MLP Reg1 (512→256→128→1) là mô hình tốt nhất với test accuracy 96.41%, F1 96.39%, EER 3.90%. Dù model size lớn hơn (2.64 MB vs 0.41 MB), nhưng bù lại accuracy cao hơn, FAR thấp hơn 46.4% (an toàn hơn), và thậm chí inference nhanh hơn 71.5% nhờ kiến trúc MLP phù hợp. **Khuyến nghị sử dụng FaceNet512 + RetinaFace + Reg1 cho mọi ứng dụng**, đặc biệt là yêu cầu bảo mật cao.
+> **Kết luận cuối cùng:** FaceNet512 + RetinaFace + MLP Reg1 (512→256→128→1) là mô hình tốt nhất với test accuracy 96.41%, F1 96.39%, EER 3.90%. So với baseline FaceNet128+RetinaFace (95.00% acc, 5.00% EER), model này cải thiện +1.41% accuracy, -22% EER, -48% FAR. Dù model size lớn hơn (2.64 MB vs 0.41 MB) và latency cao hơn một chút (0.19ms vs 0.17ms), nhưng CPU total thấp hơn (8.82% vs 11.73%) — nhờ MLP Reg1 tối ưu. **Khuyến nghị sử dụng FaceNet512 + RetinaFace + Reg1 cho mọi ứng dụng**, đặc biệt là yêu cầu bảo mật cao.
 
 ---
 
@@ -228,11 +230,12 @@ Reg3 (768→384→128) quá rộng → dư thừa tham số, không cải thiệ
 
 | Tình huống | Model đề xuất | Lý do |
 |------------|--------------|-------|
-| **Bảo mật cao, EER thấp** | FaceNet512 + RetinaFace + Reg1 | EER 3.90%, FAR 2.77% |
-| **Real-time, FPS cao** | FaceNet512 + RetinaFace + Reg1 | 5223 FPS, 0.19ms |
-| **Thiết bị cấu hình thấp (edge/IoT)** | FaceNet512 + RetinaFace + Reg2 | Model 1.16 MB, 4521 FPS |
-| **Cân bằng accuracy/size** | FaceNet128 + RetinaFace | 0.41 MB, Acc 95.00% |
-| **Triển khai mobile** | FaceNet128 + MTCNN | Nhẹ nhất (0.41 MB), nhanh (3911 FPS) |
+| **Bảo mật cao, EER thấp** | FaceNet512 + RetinaFace + Reg1 | EER 3.90%, FAR 2.77%, CPU 8.82% |
+| **Real-time, FPS cao** | FaceNet512 + RetinaFace + Reg1 | 5223 FPS, 0.19ms, CPU 8.82% |
+| **Thiết bị cấu hình thấp (edge/IoT)** | FaceNet512 + RetinaFace + Reg2 | Model 1.16 MB, CPU 6.57%, 4521 FPS |
+| **Cân bằng accuracy/size** | FaceNet128 + RetinaFace | 0.41 MB, Acc 95.00%, CPU 11.73% |
+| **Triển khai mobile** | FaceNet128 + MTCNN | Nhẹ nhất (0.41 MB), CPU 6.75%, 4609 FPS |
+| **Tiết kiệm CPU nhất** | FaceNet512 + MTCNN + Reg1 (CV) | CPU 6.34%, RAM 702 MB, FPS 2304 |
 
 ---
 
