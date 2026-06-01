@@ -1,43 +1,65 @@
-# Dataset - do not commit raw/private datasets
+# ===== DATA & DATASETS =====
 data/*
 !data/README.md
-!data/.gitkeep
 
-# Documents - keep only documentation placeholders
+# ===== DOCUMENTS =====
 documents/*
 !documents/README.md
-!documents/.gitkeep
 
-# Ignore model folders by default
+# ===== MODELS =====
 models/*
 !models/README.md
-!models/.gitkeep
-!models/precomputed/
-models/precomputed/*
-!models/precomputed/.gitkeep
+models/precomputed/*.zip
 !models/precomputed/Facenet_mtcnn_embeddings.pkl
 !models/precomputed/Facenet_retinaface_embeddings.pkl
 !models/precomputed/Facenet512_mtcnn_embeddings.pkl
 !models/precomputed/Facenet512_retinaface_embeddings.pkl
 
-# Do not commit generated Python files
+# ===== APP GENERATED DATA =====
+app/app/.venv/
+app/app/models/precomputed/
+app/app/app/faces_db/
+app/app/app/registered_faces/embeddings_cache.pkl
+app/app/app/temp_uploads/
+
+# ===== LOGS & EXPERIMENT OUTPUTS =====
+logs/
+logs.rar
+app/app/reports/reports/runs/
+
+# ===== REPORTS =====
+reports/images/
+reports/words/
+
+# ===== PYTHON CACHE =====
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.ipynb_checkpoints/
 
-# Do not commit local virtual environments or secrets
+# ===== VIRTUAL ENVIRONMENTS =====
 .venv/
 venv/
 env/
+
+# ===== TRAINED MODEL FILES =====
+*.keras
+*.h5
+
+# ===== ARCHIVES =====
+*.rar
+*.zip
+*.tar.gz
+*.7z
+
+# ===== GENERATED REPORTS & DATA =====
+*.xlsx
+
+# ===== SECRETS =====
 .env
 
-# Do not commit frontend dependency/build output
-node_modules/
-dist/
-.vite/
-
-# OS/editor
+# ===== OS / EDITOR =====
 .DS_Store
 Thumbs.db
 .vscode/
